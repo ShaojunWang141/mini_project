@@ -1,0 +1,28 @@
+edition: 3.0.0
+name: submission-event-app
+access: default
+
+resources:
+  fcDemo:
+    component: fc3
+    props:
+      region: cn-beijing
+      functionName: submission-event
+      runtime: python3.9
+      handler: index.handler
+      code: ./submission-event
+      timeout: 60
+      memorySize: 512
+      cpu: 0.35
+      internetAccess: true
+      environmentVariables:
+        PROCESSING_URL: https://processing-oxmspdmgca.cn-beijing.fcapp.run
+      triggers:
+        - triggerType: http
+          triggerName: httpTrigger
+          qualifier: LATEST
+          triggerConfig:
+            methods:
+              - POST
+            authType: anonymous
+            disableURLInternet: false
