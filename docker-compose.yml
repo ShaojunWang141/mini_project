@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  data-service:
+    build: ./data-service
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./data:/data
+    networks:
+      - campus-net
+
+  workflow-service:
+    build: ./workflow-service
+    ports:
+      - "5001:5001"
+    environment:
+      - DATA_SERVICE_URL=http://123.57.211.134:5002
+      - EVENT_FUNCTION_URL=https://submisson-event-campus-service-inprtfujyc.cn-beijing.fcapp.run
+    depends_on:
+      - data-service
+    networks:
+      - campus-net
+
+  presentation-service:
+    build: ./presentation-service
+    ports:
+      - "80:5000"
+    environment:
+      - WORKFLOW_URL=http://workflow-service:5001
+    depends_on:
+      - workflow-service
+    networks:
+      - campus-net
+
+networks:
+  campus-net:
+    driver: bridge
