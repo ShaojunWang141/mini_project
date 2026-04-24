@@ -1,12 +1,14 @@
 # Campus Buzz Mini Project
 
-这是一个基于 Flask 和 Docker Compose 的校园活动提交与处理系统，由三个服务组成：
+This is a campus event submission and processing system based on Flask and Docker Compose, consisting of three services:
 
-- `presentation-service`：页面展示服务，提供活动提交表单和结果页面。
-- `workflow-service`：流程服务，接收提交内容，写入数据服务，并触发事件处理函数。
-- `data-service`：数据服务，负责保存、查询和更新活动记录。
+- `presentation-service`: Provides the event submission form and result display page.
+- `workflow-service`: Handles submissions, writes data to the data service, and triggers event processing functions.
+- `data-service`: Manages the storage, retrieval, and updating of event records.
 
-## 项目结构
+
+
+## Project Structure
 
 ```text
 .
@@ -18,26 +20,34 @@
 └── README.md
 ```
 
-## 运行方式
 
-确保本机已经安装 Docker Desktop，然后在项目根目录运行：
 
-```powershell
+## How to Run
+
+Make sure Docker Desktop is installed on your machine, then run the following command in the project root directory:
+
+```
 docker compose up --build
 ```
 
-启动后访问：
 
-```text
+
+After starting, access the application at:
+
+```
 http://localhost
 ```
 
-## 服务端口
 
-- `presentation-service`：宿主机 `80`，容器内 `5000`
-- `workflow-service`：`5001`
-- `data-service`：`5002`
 
-## 上传说明
+## Service Ports
 
-上传 GitHub 时只需要提交源码、配置文件和说明文档，不需要提交虚拟环境、IDE 配置、打包后的依赖目录或 zip 文件。
+- `presentation-service`: `80` on host, `5000` inside the container
+- `workflow-service`: `5001`
+- `data-service`: `5002`
+
+
+
+## Submission to GitHub
+
+When uploading to GitHub, only include the source code, configuration files, and documentation. Do **not** include virtual environments, IDE configurations, dependency directories, or zip files.
